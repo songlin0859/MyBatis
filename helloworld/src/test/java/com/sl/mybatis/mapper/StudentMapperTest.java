@@ -1,6 +1,7 @@
 package com.sl.mybatis.mapper;
 
 import com.sl.mybatis.entity.Student;
+import com.sl.mybatis.entity.Teacher;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,6 +29,24 @@ public class StudentMapperTest {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getTeacher(){
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = sqlSessionFactory.openSession();
+            List<Teacher> teachers = sqlSession.selectList("com.sl.mybatis.mapper.TeacherMapper.selectAll");
+            for (Teacher teacher : teachers) {
+                System.out.println(teacher);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
         }
     }
 

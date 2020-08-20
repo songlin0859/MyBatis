@@ -31,5 +31,6 @@
 
     <mappers>
         <mapper resource="com/sl/mybatis/mapper/StudentMapper.xml"/>
+        <mapper resource="com/sl/mybatis/mapper/TeacherMapper.xml"/>
     </mappers>
 </configuration>
