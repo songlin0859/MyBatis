@@ -4,20 +4,15 @@ import java.util.Date;
 
 public class Student {
     private Integer studentId;
-
     private String name;
-
     private String phone;
-
     private String email;
-
     private Byte sex;
-
     private Byte locked;
-
     private Date gmtCreated;
-
     private Date gmtModified;
+
+    private Teacher teacher;
 
     public Integer getStudentId() {
         return studentId;
@@ -83,6 +78,14 @@ public class Student {
         this.gmtModified = gmtModified;
     }
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -94,6 +97,7 @@ public class Student {
                 ", locked=" + locked +
                 ", gmtCreated=" + gmtCreated +
                 ", gmtModified=" + gmtModified +
+                ", teacher=" + teacher +
                 '}';
     }
 }

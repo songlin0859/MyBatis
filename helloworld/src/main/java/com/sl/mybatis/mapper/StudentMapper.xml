@@ -11,10 +11,16 @@
         <result column="locked" jdbcType="TINYINT" property="locked"/>
         <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>
         <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <association property="teacher" column="tid" javaType="com.sl.mybatis.entity.Teacher" select="getTeacher"/>
     </resultMap>
     <sql id="Base_Column_List">
-        student_id, name, phone, email, sex, locked, gmt_created, gmt_modified
+        student_id, name, phone, email, sex, locked, gmt_created, gmt_modified,tid
     </sql>
+
+    <select id="getTeacher" resultType="com.sl.mybatis.entity.Teacher">
+        select id, name from teacher where id = #{id}
+    </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
