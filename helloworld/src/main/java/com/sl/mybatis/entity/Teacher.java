@@ -1,8 +1,12 @@
 package com.sl.mybatis.entity;
 
+import java.util.List;
+
 public class Teacher {
     private int id;
     private String name;
+
+    private List<Student> students;
 
     public int getId() {
         return id;
@@ -20,11 +24,20 @@ public class Teacher {
         this.name = name;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", students=" + students +
                 '}';
     }
 }

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sl.mybatis.mapper.TeacherMapper">
-    <select id="selectAll" resultType="com.sl.mybatis.entity.Teacher">
-        select id, name from teacher;
+    <resultMap id="teacherStudent" type="com.sl.mybatis.entity.Teacher">
+        <id column="id" property="id"/>
+        <result column="tname" property="name"/>
+        <collection property="students" ofType="com.sl.mybatis.entity.Student">
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="phone" jdbcType="VARCHAR" property="phone"/>
+            <result column="email" jdbcType="VARCHAR" property="email"/>
+            <result column="sex" jdbcType="TINYINT" property="sex"/>
+            <result column="locked" jdbcType="TINYINT" property="locked"/>
+            <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>
+            <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        </collection>
+    </resultMap>
+    <select id="selectAll" resultMap="teacherStudent">
+        select
+        s.student_id, s.name, s.phone, s.email, s.sex, s.locked, s.gmt_created, s.gmt_modified,t.id,t.name tname
+        from
+        student s, teacher t
+        where s.tid = t.id;
     </select>
 </mapper>

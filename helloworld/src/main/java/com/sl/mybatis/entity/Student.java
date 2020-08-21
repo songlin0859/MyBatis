@@ -12,8 +12,6 @@ public class Student {
     private Date gmtCreated;
     private Date gmtModified;
 
-    private Teacher teacher;
-
     public Integer getStudentId() {
         return studentId;
     }
@@ -78,14 +76,6 @@ public class Student {
         this.gmtModified = gmtModified;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
@@ -96,8 +86,7 @@ public class Student {
                 ", sex=" + sex +
                 ", locked=" + locked +
                 ", gmtCreated=" + gmtCreated +
-                ", gmtModified=" + gmtModified +
-                ", teacher=" + teacher +
+                ", gmtModified=" + gmtModified+
                 '}';
     }
 }
