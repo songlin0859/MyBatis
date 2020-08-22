@@ -96,4 +96,11 @@
         </choose>
     </select>
 
+    <insert id="insertList">
+        insert into student(name) values
+        <foreach collection="list" item="item" separator=",">
+            ( #{item.name})
+        </foreach>
+    </insert>
+
 </mapper>

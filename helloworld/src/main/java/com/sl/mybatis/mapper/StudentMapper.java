@@ -15,4 +15,6 @@ public interface StudentMapper {
     List<Student> testIf(String name);
     //mapper里的接口参数是多个，加上@Param注解
     List<Student> testChoose(@Param("name") String name, @Param("sex") Integer sex);
+
+    void insertList(List<Student> students);
 }
