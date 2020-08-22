@@ -10,4 +10,6 @@ public interface StudentMapper {
      * @return List<Student>
      */
     List<Student> selectAll();
+
+    List<Student> testIf(String name);
 }

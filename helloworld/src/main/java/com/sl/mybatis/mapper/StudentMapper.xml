@@ -2,32 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sl.mybatis.mapper.StudentMapper">
     <!--  方式一  -->
-<!--    <resultMap id="BaseResultMap" type="com.sl.mybatis.entity.Student">-->
-<!--        <id column="student_id" jdbcType="INTEGER" property="studentId"/>-->
-<!--        <result column="name" jdbcType="VARCHAR" property="name"/>-->
-<!--        <result column="phone" jdbcType="VARCHAR" property="phone"/>-->
-<!--        <result column="email" jdbcType="VARCHAR" property="email"/>-->
-<!--        <result column="sex" jdbcType="TINYINT" property="sex"/>-->
-<!--        <result column="locked" jdbcType="TINYINT" property="locked"/>-->
-<!--        <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>-->
-<!--        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>-->
-<!--        <association property="teacher" column="tid" javaType="com.sl.mybatis.entity.Teacher" select="getTeacher"/>-->
-<!--    </resultMap>-->
-<!--    <sql id="Base_Column_List">-->
-<!--        student_id, name, phone, email, sex, locked, gmt_created, gmt_modified,tid-->
-<!--    </sql>-->
+    <!--    <resultMap id="BaseResultMap" type="com.sl.mybatis.entity.Student">-->
+    <!--        <id column="student_id" jdbcType="INTEGER" property="studentId"/>-->
+    <!--        <result column="name" jdbcType="VARCHAR" property="name"/>-->
+    <!--        <result column="phone" jdbcType="VARCHAR" property="phone"/>-->
+    <!--        <result column="email" jdbcType="VARCHAR" property="email"/>-->
+    <!--        <result column="sex" jdbcType="TINYINT" property="sex"/>-->
+    <!--        <result column="locked" jdbcType="TINYINT" property="locked"/>-->
+    <!--        <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>-->
+    <!--        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>-->
+    <!--        <association property="teacher" column="tid" javaType="com.sl.mybatis.entity.Teacher" select="getTeacher"/>-->
+    <!--    </resultMap>-->
+    <!--    <sql id="Base_Column_List">-->
+    <!--        student_id, name, phone, email, sex, locked, gmt_created, gmt_modified,tid-->
+    <!--    </sql>-->
 
-<!--    <select id="getTeacher" resultType="com.sl.mybatis.entity.Teacher">-->
-<!--        select id, name from teacher where id = #{id}-->
-<!--    </select>-->
+    <!--    <select id="getTeacher" resultType="com.sl.mybatis.entity.Teacher">-->
+    <!--        select id, name from teacher where id = #{id}-->
+    <!--    </select>-->
 
-<!--    <select id="selectAll" resultMap="BaseResultMap">-->
-<!--        select-->
-<!--        <include refid="Base_Column_List"/>-->
-<!--        from student-->
-<!--    </select>-->
+    <!--    <select id="selectAll" resultMap="BaseResultMap">-->
+    <!--        select-->
+    <!--        <include refid="Base_Column_List"/>-->
+    <!--        from student-->
+    <!--    </select>-->
 
-<!--  方式二  -->
+    <!--  方式二  -->
     <resultMap id="BaseResultMap" type="com.sl.mybatis.entity.Student">
         <id column="student_id" jdbcType="INTEGER" property="studentId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -50,4 +50,34 @@
         student s,teacher t
         where s.tid = t.id
     </select>
+
+
+    <resultMap id="testIfMap" type="com.sl.mybatis.entity.Student">
+        <id column="student_id" jdbcType="INTEGER" property="studentId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="locked" jdbcType="TINYINT" property="locked"/>
+        <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+
+    <select id="testIf" parameterType="java.lang.String" resultMap="testIfMap">
+        select
+        s.student_id, s.name, s.phone, s.email, s.sex
+        from
+        student s
+<!--        <where>-->
+<!--            <if test="name != null">-->
+<!--                s.name = #{name}-->
+<!--            </if>-->
+<!--        </where>-->
+
+        <if test="name != null">
+            where s.name = #{name}
+        </if>
+
+    </select>
+
 </mapper>
