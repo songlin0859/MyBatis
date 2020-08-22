@@ -33,6 +33,33 @@ public class StudentMapperTest {
     }
 
     @Test
+    public void testChoose(){
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = sqlSessionFactory.openSession();
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            /*List<Student> students = studentMapper.testIf(null);
+            for (Student student : students) {
+                System.out.println(student);
+            }*/
+
+            //List<Student> students = studentMapper.testChoose("小丽",0);
+            //List<Student> students = studentMapper.testChoose("小丽",null);
+            List<Student> students = studentMapper.testChoose(null,null);
+            System.out.println("=========================");
+            for (Student student : students) {
+                System.out.println(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+    @Test
     public void testIf(){
         SqlSession sqlSession = null;
         try {

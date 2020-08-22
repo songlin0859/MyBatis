@@ -77,7 +77,23 @@
         <if test="name != null">
             where s.name = #{name}
         </if>
-
+    </select>
+    <select id="testChoose" resultMap="testIfMap">
+        select
+        s.student_id, s.name, s.phone, s.email, s.sex
+        from
+        student s
+        <choose>
+            <when test="sex != null">
+                where s.sex = #{sex}
+            </when>
+            <when test="name != null">
+                where s.name = #{name}
+            </when>
+            <otherwise>
+                where 1 =1
+            </otherwise>
+        </choose>
     </select>
 
 </mapper>
