@@ -62,7 +62,8 @@ public class StudentMapperTest {
         try {
             sqlSession = sqlSessionFactory.openSession();
             StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-            List<Student> students = studentMapper.testLike("%红%");
+            //List<Student> students = studentMapper.testLike("%红%");
+            List<Student> students = studentMapper.testLike("红");
             System.out.println("=========================");
             for (Student student : students) {
                 System.out.println(student);
