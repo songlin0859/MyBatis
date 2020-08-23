@@ -6,10 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface StudentMapper {
-    /**
-     *
-     * @return List<Student>
-     */
     List<Student> selectAll();
 
     List<Student> testIf(String name);
@@ -17,4 +13,6 @@ public interface StudentMapper {
     List<Student> testChoose(@Param("name") String name, @Param("sex") Integer sex);
 
     void insertList(List<Student> students);
+
+    List<Student> testLike(String name);
 }

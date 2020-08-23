@@ -34,7 +34,7 @@ public class StudentMapperTest {
     }
 
     @Test
-    public void insertList(){
+    public void insertList() {
         SqlSession sqlSession = null;
         try {
             sqlSession = sqlSessionFactory.openSession();
@@ -42,7 +42,7 @@ public class StudentMapperTest {
             List<Student> students = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 Student student = new Student();
-                student.setName("name"+i);
+                student.setName("name" + i);
                 students.add(student);
             }
             studentMapper.insertList(students);
@@ -57,7 +57,28 @@ public class StudentMapperTest {
     }
 
     @Test
-    public void testChoose(){
+    public void testLike() {
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = sqlSessionFactory.openSession();
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            List<Student> students = studentMapper.testLike("%红%");
+            System.out.println("=========================");
+            for (Student student : students) {
+                System.out.println(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+
+    @Test
+    public void testChoose() {
         SqlSession sqlSession = null;
         try {
             sqlSession = sqlSessionFactory.openSession();
@@ -69,7 +90,7 @@ public class StudentMapperTest {
 
             //List<Student> students = studentMapper.testChoose("小丽",0);
             //List<Student> students = studentMapper.testChoose("小丽",null);
-            List<Student> students = studentMapper.testChoose(null,null);
+            List<Student> students = studentMapper.testChoose(null, null);
             System.out.println("=========================");
             for (Student student : students) {
                 System.out.println(student);
@@ -84,7 +105,7 @@ public class StudentMapperTest {
     }
 
     @Test
-    public void testIf(){
+    public void testIf() {
         SqlSession sqlSession = null;
         try {
             sqlSession = sqlSessionFactory.openSession();
@@ -109,7 +130,7 @@ public class StudentMapperTest {
     }
 
     @Test
-    public void getTeacher(){
+    public void getTeacher() {
         SqlSession sqlSession = null;
         try {
             sqlSession = sqlSessionFactory.openSession();

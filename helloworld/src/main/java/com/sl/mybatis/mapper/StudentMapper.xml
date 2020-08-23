@@ -103,4 +103,11 @@
         </foreach>
     </insert>
 
+    <select id="testLike" parameterType="String" resultMap="testIfMap">
+        select * from student
+        <if test="name != null">
+            where name like #{name}
+        </if>
+    </select>
+
 </mapper>
